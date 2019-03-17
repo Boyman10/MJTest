@@ -36,25 +36,15 @@ public class App
         String o;
 
         if (b && m.groupCount() > 2) {
+
             l = Integer.valueOf(m.group(1));
             r = Integer.valueOf(m.group(3));
-            //o = m.group(2).charAt(0);
             o = m.group(2);
 
-            operation = new Operation<Operator.>()
+            operation = new OperationImpl(o);
 
-           /* switch (o) {
-                case '+':
-                    return String.valueOf(l + r);
 
-                case '-':
-                    return String.valueOf(l - r);
-                default:
-                    return "invalid operator";
-            }
-            */
-
-           return operation.operation(l,r);
+           return String.valueOf(operation.operation(l,r));
 
         }
         else
