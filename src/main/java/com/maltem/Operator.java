@@ -2,8 +2,8 @@ package com.maltem;
 
 public enum Operator {
 
-    PLUS,
-    MINUS;
+    PLUS("Plus"),
+    MINUS("Minus");
 
     public static Operator getOp(String op) {
         switch(op) {
@@ -12,5 +12,17 @@ public enum Operator {
 
         }
         return null;
+    }
+
+
+    private String name = "";
+
+    //Constructeur
+    Operator(String name){
+        this.name = name;
+    }
+
+    public String toString(){
+        return name;
     }
 }

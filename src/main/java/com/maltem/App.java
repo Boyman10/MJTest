@@ -1,6 +1,5 @@
 package com.maltem;
 
-
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -40,11 +39,17 @@ public class App
             l = Integer.valueOf(m.group(1));
             r = Integer.valueOf(m.group(3));
             o = m.group(2);
+            try {
+                Class<?> clazz = Class.forName("com.maltem.Operation" + Operator.getOp(o));
+                operation = (Operation)clazz.getDeclaredConstructor().newInstance();
+                return String.valueOf(operation.operation(l,r));
 
-            operation = new OperationImpl(o);
+            } catch (ReflectiveOperationException  e) {
+                System.err.println("ReflectiveOperationException " + e.getMessage());
+                return e.getMessage();
+            }
 
 
-           return String.valueOf(operation.operation(l,r));
 
         }
         else
